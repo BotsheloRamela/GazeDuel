@@ -12,7 +12,10 @@ export default function Home() {
       <div className='flex flex-row p-12 gap-64'>
         <div className='text-center'>
           <h5 className='font-medium'>Computer</h5>
-          <div className='bg-[#7F00FF] h-96 w-96 rounded-md mt-4'></div>
+          <div className='bg-[#7F00FF] flex flex-col items-center justify-evenly h-96 w-96 rounded-md mt-4 p -12'>
+            <p className='text-8xl'>🤖</p>
+            <div className='bg-[#28282B] rounded-lg h-20 w-80 '></div>
+          </div>
         </div>
         <div className='text-center'>
           <h5 className='font-medium'>You</h5>
