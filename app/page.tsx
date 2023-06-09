@@ -19,7 +19,11 @@ export default function Home() {
         </div>
         <div className='text-center'>
           <h5 className='font-medium'>You</h5>
-          <div className='bg-[#7F00FF] h-96 w-96 rounded-md mt-4'></div>
+          <div className='bg-[#7F00FF] flex flex-col items-center justify-evenly h-96 w-96 rounded-md mt-4 p -12'>
+            {/* Camera */}
+            <div className='bg-violet-950 h-60 w-72 rounded-lg'></div>
+            <div className='bg-[#28282B] rounded-lg h-20 w-80 '></div>
+          </div>
         </div>
       </div>
     </main>
