@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -34,8 +34,55 @@ export default function Home() {
 
   }, [])
 
-  const playerScore = 0;
-  const cpuScore = 0;
+  enum Move {
+    ROCK = "ROCK",
+    PAPER = "PAPER",
+    SCISSORS = "SCISSORS",
+  }
+
+  enum GameState {
+    NULL = "NULL",
+    TIE = "TIE",
+    LOSS = "LOSS",
+    WIN = "WIN",
+  }
+
+  const [gameState, setGameState] = useState(GameState.NULL);
+
+  const [playerScore, setPlayerScore] = useState(0);
+  const [cpuScore, setCpuScore] = useState(0);
+
+  function determineWinner(_playerMove : Move, _cpuMove : Move) {
+    switch (_playerMove) {
+      case _cpuMove:
+        setGameState(GameState.TIE);
+        break;
+      case Move.ROCK:
+        if (_cpuMove === Move.PAPER) {
+          setGameState(GameState.LOSS);
+        } else {
+          setGameState(GameState.WIN);
+        }
+        break;
+      case Move.PAPER:
+        if (_cpuMove === Move.SCISSORS) {
+          setGameState(GameState.LOSS);
+        } else {
+          setGameState(GameState.WIN);
+        }
+        break;
+      case Move.SCISSORS:
+        if (_cpuMove === Move.ROCK) {
+          setGameState(GameState.LOSS);
+        } else {
+          setGameState(GameState.WIN);
+        }
+        break;
+      default:
+        setGameState(GameState.NULL);
+        break;
+    }
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 h-[100vh] bg-[#25274d]">
@@ -57,8 +104,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='flex flex-row justify-evenly items-center w-40'>
+        <div className='flex flex-col justify-evenly items-center w-40'>
           <h1 className='text-6xl'>{cpuScore} - {playerScore}</h1>
+          <h2 className='text-5xl'>{gameState}!</h2>
           </div>
         <div className='text-center'>
           <h5 className='font-medium'>You</h5>
