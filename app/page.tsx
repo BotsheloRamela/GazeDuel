@@ -34,6 +34,9 @@ export default function Home() {
 
   }, [])
 
+  const playerScore = 0;
+  const cpuScore = 0;
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 h-[100vh] bg-[#25274d]">
       <div className='text-center'>
@@ -42,7 +45,7 @@ export default function Home() {
         <h3 className='text-sm font-semibold text-[#aaabb8]'><a href="https://github.com/BotsheloRamela" target='_blank' className='underline'>Botshelo Ramela</a></h3>
       </div>
 
-      <div className='flex flex-row p-12 gap-64'>
+      <div className='flex flex-row p-12 gap-48'>
         <div className='text-center'>
           <h5 className='font-medium'>Computer</h5>
           <div className='bg-[#464866] flex flex-col items-center justify-evenly h-96 w-96 rounded-md mt-4 p -12'>
@@ -54,6 +57,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className='flex flex-row justify-evenly items-center w-40'>
+          <h1 className='text-6xl'>{cpuScore} - {playerScore}</h1>
+          </div>
         <div className='text-center'>
           <h5 className='font-medium'>You</h5>
           <div className='bg-[#464866] flex flex-col items-center justify-evenly h-96 w-96 rounded-md mt-4 p -12'>
