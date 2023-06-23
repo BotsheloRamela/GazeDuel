@@ -1,6 +1,39 @@
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 
 export default function Home() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+
+    const startVideo = () => {
+      if (videoElement && !videoElement.srcObject) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then((stream) => {
+            videoElement.srcObject = stream;
+          })
+          .catch((error) => {
+            console.error('Error accessing webcam:', error);
+          });
+      }
+    };
+
+    startVideo();
+
+    return () => {
+      if (videoElement && videoElement.srcObject) {
+        const stream = videoElement.srcObject as MediaStream;
+        const tracks = stream.getTracks();
+
+        tracks.forEach((track) => {
+          track.stop();
+        });
+      }
+    };
+
+  }, [])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 h-[100vh]">
       <div className='text-center'>
@@ -21,7 +54,11 @@ export default function Home() {
           <h5 className='font-medium'>You</h5>
           <div className='bg-[#7F00FF] flex flex-col items-center justify-evenly h-96 w-96 rounded-md mt-4 p -12'>
             {/* Camera   */}
-            <div className='bg-violet-950 h-60 w-72 rounded-lg'></div>
+            <div className='bg-violet-950 h-60 w-72 rounded-lg'>
+              <div>
+              <video ref={videoRef} autoPlay></video>
+              </div>
+            </div>
             <div className='bg-[#28282B] rounded-lg h-20 w-80 '></div>
           </div>
         </div>
