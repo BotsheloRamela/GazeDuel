@@ -84,6 +84,14 @@ export default function Home() {
     }
   }
 
+  function updatePoints() {
+    if (gameState === GameState.WIN) {
+      setPlayerScore(playerScore+1)
+    } else if (gameState === GameState.LOSS) {
+      setCpuScore(cpuScore+1)
+    }
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 h-[100vh] bg-[#25274d]">
       <div className='text-center'>
