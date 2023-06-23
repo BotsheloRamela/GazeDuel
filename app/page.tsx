@@ -1,4 +1,4 @@
-import Image from 'next/image'
+"use client";
 import { useEffect, useRef } from 'react'
 
 export default function Home() {
@@ -56,7 +56,7 @@ export default function Home() {
             {/* Camera   */}
             <div className='bg-violet-950 h-60 w-72 rounded-lg'>
               <div>
-              <video ref={videoRef} autoPlay></video>
+                <video ref={videoRef} autoPlay className='h-60'></video>
               </div>
             </div>
             <div className='bg-[#28282B] rounded-lg h-20 w-80 '></div>
