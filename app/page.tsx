@@ -82,6 +82,7 @@ export default function Home() {
         setGameState(GameState.NULL);
         break;
     }
+    updatePoints()
   }
 
   function updatePoints() {
@@ -91,6 +92,12 @@ export default function Home() {
       setCpuScore(cpuScore+1)
     }
   }
+
+  const handleClick = (move: Move) => {
+    // Simulate CPU move with a random move
+    const cpuMove: Move = Object.values(Move)[Math.floor(Math.random() * 3)];
+    determineWinner(move, cpuMove);
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 h-[100vh] bg-[#25274d]">
@@ -126,9 +133,12 @@ export default function Home() {
               </div>
             </div>
             <div className='bg-[#aaabb8] rounded-lg h-20 w-80 flex justify-evenly items-center'>
-            <div className='h-16 w-16 bg-[#282828] rounded-md text-4xl flex justify-center items-center'>🪨</div>
-              <div className='h-16 w-16 bg-[#282828] rounded-md text-4xl flex justify-center items-center'>📃</div>
-              <div className='h-16 w-16 bg-[#282828] rounded-md text-4xl flex justify-center items-center'>✂️</div>
+            <div className='h-16 w-16 bg-[#282828] rounded-md text-4xl flex justify-center items-center'
+                  onClick={() => handleClick(Move.ROCK)}>🪨</div>
+              <div className='h-16 w-16 bg-[#282828] rounded-md text-4xl flex justify-center items-center'
+                  onClick={() => handleClick(Move.PAPER)}>📃</div>
+              <div className='h-16 w-16 bg-[#282828] rounded-md text-4xl flex justify-center items-center'
+                  onClick={() => handleClick(Move.SCISSORS)}>✂️</div>
             </div>
           </div>
         </div>
